@@ -48,8 +48,8 @@ Utilizamos o método querySelector para percorrer a árvore do DOM e encontrar o
 ***document.getElementsByTagName(‘tag’)*** retorna um array dos elementos pelo nome da tag passada
 ***document.querySelectorAll(seletor)*** devolve todos os seletores com o mesmo nome
 
-<h3>Data-Atributo</h3>
-Data atributo para projetos maiores e evitar conflitos colocamos um "data-atributo" nos objetos que queremos manipular no javascript. por exemplo:
+<h3>data-attributes</h3>
+Data atributo para projetos maiores e evitar conflitos colocamos um "data-attributes" nos objetos que queremos manipular no javascript. por exemplo:
 
 ~~~html
 <button class="botoo">Enviar</button>
@@ -58,7 +58,7 @@ Data atributo para projetos maiores e evitar conflitos colocamos um "data-atribu
 document.querySelector('.botao')
 ~~~
 
-Ao invés de manipularmos o objeto chamando pela classe ".botao" usamos um data-attributes.
+Ao invés de manipularmos o objeto chamando pela classe ```.botao``` usamos um data-attributes.
 
 ~~~html
 <button class="botão" data-form-button>Enviar</button>
@@ -137,6 +137,43 @@ novaTarefa.addEventListener('click', ()=>{
 Ok, agora tudo que estamos digitando no input está sendo armazenado em nosso console. Agora temos o nosso objetivo é inserir o texto do input no corpo da página.
 
 <h2>Inserir nossa lista no corpo da página</h2>
+
+Nossa primeira tarefa é analisarmos o nosso código **HTML** e definir onde colocaremos nossa lista de tarefas. 
+Após analisarmos o código vimos que precisamos inserir dentro da nossa ```<ul>``` um ```<li>``` e um ```<p>```.
+
+~~~~html
+ <ul class="list"> 
+        <li class="task" data-task>
+          <p class="content"></p>
+      </li>
+
+~~~~
+
+
+Em nosso código javascript iremos chamar o nosso ```data-task``` atribuindo em uma variável chamada ```tarefa```.
+
+~~~javascript
+
+const tarefa = document.querySelector('[data-task]');
+
+~~~~~~~
+
+Agora iremos criar mais uma variável chamada conteúdo e para esta variável estaremos utilizando o ```templateString```.
+
+>Template String: responsável por realizar a interpolação de nosso código html com o nosso javascript.
+
+Para realizarmos esta interpolação precisamo usar o acento crase no lugar das aspas.
+
+~~~javascript
+
+    const conteudo = `<p class=""content>${valor}</p>`;
+    tarefa.innerHTML = conteudo;
+    
+~~~~ 
+
+agora o código já está inserindo normalmente o texto escrito dentro do input
+
+
 
 
 
