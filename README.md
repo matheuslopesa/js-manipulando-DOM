@@ -174,9 +174,87 @@ Para realizarmos esta interpolação precisamo usar o acento crase no lugar das 
 agora o código já está inserindo normalmente o texto escrito dentro do input
 
 
+<h2>Criando os elemento</h2>
+
+Vimos anteriormente como acrescentar o ```texto``` dentro do corpo de nosso projeto. Agora irmos criar os elementos dentro da página. O nosso primeiro passo será, ir no nosso documento ```html``` e excluir nossa ```<li>``` e ```<P>```. Pois iremos criar dentro do nosso javascript.
+~
+Primeiro vamos adicionar dentro da nossa tag ```ul``` um ```data-attributes``` para podermos manipular em nosso documento javascript.
 
 
+~~~html
+    <ul class="class-list" data-list></ul>
 
+~~~~
+
+Agora em nosso javascript iremos apagar nossas variáveis que não estão mais sendo utilizadas e vamos criar novas variáveis.
+
+nossa primeira variável será, ```lista``` para e iremos pegar de nosso documento html
+
+~~~javascript
+ 
+    const lista = document.querySelector('[data-list]')
+
+~~~~
+
+próxima variável será para criarmos uma ```<li>``` dentro da nossa ```<ul>```.
+
+~~~javascript
+    const tarefa = document.createElemnte('li');
+~~~~
+
+para adicionarmos uma classe para este elemento precisamos declarar da seguinte forma:
+~~~javascript
+    tarefa.classList.add('task')
+    //lembrando que essa classe já existe dentro do nosso documento .css
+
+~~~~
+
+Como existe um hierarquia dentro do nossso código precisamos respeitá-las para que tudo funcione de forma correta. E para arrumarmos isso declaramos o seguinte código:
+
+~~~javascript
+    lista.appendChild(tarefa);
+~~~~
+
+Ou seja, chamamos a nossa ```lista``` e acrescentamos um filho (```appendChild```) para nossa variável ```tarefa```.
+
+
+<h2>Nosso código deve estar assim nesse momento.</h2>
+
+~~~~javascript
+
+const criarTarefa = (evento) => {
+    
+    evento.preventDefault()
+
+    const lista = document.querySelector('[data-list]');
+    const input = document.querySelector('[data-form-input]');
+    const valor = input.value;
+    
+    const tarefa = document.createElement('li')
+    tarefa.classList.add('task');
+    
+    const conteudo = `<p class=""content>${valor}</p>`;
+    
+    tarefa.innerHTML = conteudo;
+    lista.appendChild(tarefa);
+    input.value = " ";
+}
+
+const novaTarefa = document.querySelector('[data-form-button]');
+
+novaTarefa.addEventListener('click', criarTarefa);
+~~~~
+
+**LEMBRETE**
+>Quando precisamos criar um template de um parágrafo que usamos tanto o ```html``` e ```javascript``` a sintaxe utilizada é ```${exemplo}```.
+
+Todos os elementos na nossa árvore do DOM são nós e todos os nós podem ser acessados via JavaScript. Os nós podem ser deletados, criados ou modificados. Durante o curso utilizamos o método appendChild que sempre é adicionado no final do nó, para colocar um nó filho dentro do nó pai
+
+Existem outros métodos que podemos utilizar para manipular nós:
+
+>```insertBefore```(pai, filho): Coloca um nó antes do outro.
+>```replaceChild```( elemento1, elemento2): Substitui o nó elemento 1 pelo nó elemento2.
+>```removeChild```(elemento): Remove um nó da árvore.
 
 
 
