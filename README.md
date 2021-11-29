@@ -58,7 +58,7 @@ Data atributo para projetos maiores e evitar conflitos colocamos um "data-atribu
 document.querySelector('.botao')
 ~~~
 
-Ao invés de manipularmos o objeto chamando pela classe ".botao" usamos um data-atributo
+Ao invés de manipularmos o objeto chamando pela classe ".botao" usamos um data-attributes.
 
 ~~~html
 <button class="botão" data-form-button>Enviar</button>
@@ -111,7 +111,7 @@ novaTarefa.addEventListener('click', ()=>{
 
 <h2>Capturar o valor do input</h2>
 
-Primeiro passo vamos criar um data-atributo em nosso input. 
+Primeiro passo vamos criar um data-attributes em nosso input. 
 
 ~~~html
 <input class="form-input" type="text" data-form-input>
@@ -134,6 +134,9 @@ novaTarefa.addEventListener('click', ()=>{
 
 ~~~
 
+Ok, agora tudo que estamos digitando no input está sendo armazenado em nosso console. Agora temos o nosso objetivo é inserir o texto do input no corpo da página.
+
+<h2>Inserir nossa lista no corpo da página</h2>
 
 
 
