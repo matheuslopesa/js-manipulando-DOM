@@ -256,7 +256,33 @@ Existem outros métodos que podemos utilizar para manipular nós:
 >```replaceChild```( elemento1, elemento2): Substitui o nó elemento 1 pelo nó elemento2.
 >```removeChild```(elemento): Remove um nó da árvore.
 
+<h2>Criando botão Concluir</h2>
+<p>Agora nós iremos criar um botão concluir em nossa lista para cada item.</p>
 
+Nosso primeiro passo é criar um componente. Um ```componente``` é uma parte do meu todo, uma parte da minha aplicação. Vários componentes criam a aplicação, e geralmente componentes são independentes, ou seja, eu vou poder utilizá-los em várias partes da minha aplicação.
+
+~~~~Javascript
+  const botaoConcluir = () =>{
+    //aqui vamos criar um elemento chamado botão.
+    const botaoConcluir = document.createElement('button');
+    //vamos adicionar uma classe css nesse botão.
+    botaoConcluir.classList.add('check-button');
+    //vamos colocar um evento dentro deste botão para ele poder executar algo.
+    botaoConcluir.addEventListener('click',()=>{
+        //damos primeiramente este console para verificar se está tudo funcionanedo.
+        console.log('fui clicado');
+    })
+
+    return botaoConcluir;
+}
+~~~~
+
+agora dentro da nossa ```const criarTarefa``` vamos declarar que nosso ```button``` seja um "filho" da nossa ```li``` e em seguida já iremos chamar essa função.
+
+~~~javascript
+//estamos declarando que botão fique dentro do li.
+    tarefa.appendChild(botaoConcluir());
+~~~~
 
 
 
