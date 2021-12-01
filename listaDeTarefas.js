@@ -1,4 +1,7 @@
-const criarTarefa = (evento) => {
+import BotaoConcluir from "./componentes/concluirTarefas.js";
+import BotaoRemover from "./componentes/deletarTarefas.js";
+
+    const criarTarefa = (evento) => {
 
     evento.preventDefault()
 
@@ -14,7 +17,8 @@ const criarTarefa = (evento) => {
     tarefa.innerHTML = conteudo;
 
     //estamos declarando que botão fique dentro do li.
-    tarefa.appendChild(botaoConcluir());
+    tarefa.appendChild(BotaoConcluir());
+    tarefa.appendChild(BotaoRemover());
     lista.appendChild(tarefa);
     input.value = " ";
 }
@@ -22,21 +26,3 @@ const criarTarefa = (evento) => {
 const novaTarefa = document.querySelector('[data-form-button]');
 
 novaTarefa.addEventListener('click', criarTarefa);
-
-
-//criando o botão concluir tarefa**********************************
-const botaoConcluir = () =>{
-    //aqui vamos criar um elemento chamado botão.
-    const botaoConcluir = document.createElement('button');
-    //vamos adicionar uma classe css nesse botão.
-    botaoConcluir.classList.add('check-button');
-    //vamos inserir um texto dentro do botão
-    botaoConcluir.innerText = 'concluir'
-    //vamos colocar um evento dentro deste botão para ele poder executar algo.
-    botaoConcluir.addEventListener('click',()=>{
-        //damos primeiramente este console para verificar se está tudo funcionanedo.
-        console.log('fui clicado');
-    })
-
-    return botaoConcluir;
-}

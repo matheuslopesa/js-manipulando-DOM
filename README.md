@@ -284,5 +284,119 @@ agora dentro da nossa ```const criarTarefa``` vamos declarar que nosso ```button
     tarefa.appendChild(botaoConcluir());
 ~~~~
 
+Pronto! Agora, ao inserir uma tarefa dentro do input, a lista ficará disponível logo abaixo com o botão concluir ao lado da lista. Mas note que este botão ainda não está retornando algo visual para o usuário, então vamos atribuir um efeito nesta lista, para que fique explícito ao usuário que "tal" tarefa já esteja concluida.
+
+Vamos criar uma nova variável com o nome ```const concluirTarefa``` e dentro dela iremos colocar uma ```arrow function```. 
 
 
+~~~~Javascript
+
+const concluirTarefa = (evento) =>{
+    //colocamos um alvo no botão concluir criando um evento
+    const botaoConcluir = evento.target;
+    //aqui estamos subindo um NÓ na nossa hierarquia
+    //no caso estamos subindo novamente para nossa '<li>'
+    const tarefaCompleta = botaoConcluir.parentElement;
+    //toggle retorna um resultado boleano (verdadeiro e falso)
+    //aqui estamos colocando uma classe dentro do texo para que ele fique riscado.
+    tarefaCompleta.classList.toggle('done');
+
+}
+~~~~~
+
+Dentro do nosso botãoConcluir iremos remover o nosso ```console.log``` que usamos para teste e no lugar iremos charmar nossa ```const concluiTarefa```.
+
+~~~~Javascript
+botaoConcluir.addEventListener('click', concluirTarefa);
+~~~~
+
+<h3>Corrigindo um erro!</h3>
+
+>Se abrirmos o DevTools do chrome, copiar e colar o nome de uma função dentro do console. Ele irá retornar, toda a regra de função do nosso negócio e não queremos que isso aconteça.
+
+Para corrigirmos esse erro, vamos utilizar a “IIFE”, ou Immediately Invoked Function Expression ou “Função de Invocação Imediata”.
+
+Para fazer isso é muito simples. Primeiro iremos colocar nosso código dentro de um parêntese ```()``` . Antes do nosso código iremos colocar uma ```função anonima``` e uma ```arrow function```. No final do código colocamos um parêntese ```()``` para executar a função.
+
+~~~Javascript
+
+( () => {
+aqui vai estar o nosso código
+})
+()
+~~~
+
+
+<h2>Botão de Remover Tarefa</h2>
+
+Vamos inserir ao lado do nosso botão concluir um botão Remover.
+
+~~~javascript
+const BotaoRemover = () =>{
+    const botaoRemover = document.createElement('button');
+    botaoRemover.innerText = 'Remover';
+    botaoRemover.classList.add('check-button')
+    botaoRemover.addEventListener('click', () =>{
+        //este console é somente para o teste do botão
+        console.log('clicou')
+
+    })
+    return botaoRemover
+}
+~~~
+
+agora temos que ir dentro da nossa função tarefa e pedir que o nosso código também seja executado lá dentro 
+
+~~~javascript
+tarefa.appendChild(BotaoRemover());
+~~~
+
+
+>Agora iremos criar a função do botão remover, que irá substituir o nosso ```console.log```.
+
+
+
+~~~javascript
+// criamos um evento
+const deletarTarefa = (evento) =>{
+    //criamos uma variavel e atribuimos um evento com um alvo.
+    const botaoRemover = evento.target;
+    //aqui estamos, novamente, subindo um NÓ.
+    //esta const agora se refere a uma <li> e não mais um <button>
+    const tarefaCompleta = botaoRemover.parentElement;
+    //agora iremos excluir todo o elemento
+    tarefaCompleta.remove();
+
+    return botaoRemover;
+
+}
+~~~
+
+<h4>Agora a nossa aplicação está pronta e funcionando!</h4>
+
+
+<h2>Organizando o Código</h2>
+Agora nós iremos dar uma organizada em nosso código criando módulos.
+
+1. criar uma pasta chamada ```componentes```;
+2. criar dois arquivos para colocarmos nossos dois componentes principais. ```concluirTarefas.js``` e ```deletaTarefas.js```;
+3. Colar os códigos respectivos ao seu nome;
+4. Exportar os arquivos.
+~~~javascript
+//aqui no caso do arquivo concluirTarefas.js
+export default BotaoConcluir
+~~~
+5. no arquivo principar fazemos a importação dos componentes.
+~~~javascript
+import BotaoConcluir from "./componentes/concluirTarefas.js";
+import BotaoRemover from "./componentes/deletarTarefas.js";
+~~~
+6. tembém no arquivo html, especificar o type do import;
+~~~javascript
+ <script type="module" src="listaDeTarefas.js"></script>
+~~~
+7. instalar o live server no vscode;
+8. ctrl + shift + p --- escrever ```Reload window```
+9. Agora está tudo OK!
+
+<h2>Curso concluido!</h2>

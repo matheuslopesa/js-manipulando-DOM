@@ -155,8 +155,9 @@ body {
   margin: 0;
 }
 
-.task.done .content {
+.done {
   text-decoration: line-through;
 }
+
 
 /*# sourceMappingURL=style.css.map */
